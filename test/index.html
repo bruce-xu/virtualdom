@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Test Virtual DOM</title>
+    </head>
+    <body>
+        <script src="vm.js"></script>
+        <script>
+            var oldTreeObj = {
+                tagName: 'div',
+                props: {
+                    name: 'div-1',
+                    id: 'div-1'
+                },
+                children: [
+                    {
+                        tagName: 'span',
+                        props: {
+                            name: 'span-1'
+                        }
+                    },
+                    {
+                        tagName: 'i',
+                        props: {
+                            name: 'i-1'
+                        }
+                    }
+                ]
+            };
+
+            var oldTree = new VirtualNode('div', {
+                    name: 'div-1',
+                    id: 'div-1',
+                    key: 'div-1'
+                });
+            var child1 = new VirtualNode('span', {name: 'span-1', key: 'span-1'});
+            var child2 = new VirtualNode('span', {name: 'span-2', key: 'span-2'});
+            var child3 = new VirtualNode('span', {name: 'span-3', key: 'span-3'});
+            var child4 = new VirtualNode('span', {name: 'span-4', key: 'span-4'});
+            var child5 = new VirtualNode('span', {name: 'span-5', key: 'span-5'});
+            oldTree.addChild(child1);
+            oldTree.addChild(child2);
+            oldTree.addChild(child3);
+            oldTree.addChild(child4);
+            oldTree.addChild(child5);
+
+            var newTree = new VirtualNode('div', {
+                    name: 'div-1-1',
+                    data: 'div-1-1-1',
+                    key: 'div-1'
+                });
+            child1 = new VirtualNode('span', {name: 'span-1-1', key: 'span-1'});
+            child2 = new VirtualNode('span', {name: 'span-3', key: 'span-3'});
+            child3 = new VirtualNode('span', {name: 'span-5', key: 'span-5'});
+            child4 = new VirtualNode('span', {name: 'span-4', key: 'span-4'});
+            child5 = new VirtualNode('span', {name: 'span-2', key: 'span-2'});
+            newTree.addChild(child1);
+            newTree.addChild(child2);
+            newTree.addChild(child3);
+            newTree.addChild(child4);
+            newTree.addChild(child5);
+
+            var diffs = diff(oldTree, newTree);
+            console.log(diffs);
+        </script>
+    </body>
+</html>
