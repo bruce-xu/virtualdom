@@ -53,7 +53,7 @@ define(function () {
 
             this.addBtn.querySelector('select').addEventListener('change', function (e) {
                 self.addChild(e.target.value);
-                e.target.value = '-1';
+                e.target.value = '';
             });
         },
 
